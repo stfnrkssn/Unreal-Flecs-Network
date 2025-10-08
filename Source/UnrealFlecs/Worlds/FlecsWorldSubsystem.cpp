@@ -9,6 +9,7 @@
 #include "FlecsWorld.h"
 #include "FlecsWorldSettings.h"
 #include "FlecsWorldSettingsAsset.h"
+#include "UnrealEngine.h"
 
 #include "UnrealFlecsWorldTag.h"
 
@@ -17,6 +18,7 @@
 
 #include "Components/FlecsWorldPtrComponent.h"
 #include "Components/UWorldPtrComponent.h"
+#include "Engine/Engine.h"
 
 #include "General/FlecsGameplayTagManagerEntity.h"
 

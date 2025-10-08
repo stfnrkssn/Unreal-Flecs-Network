@@ -2,6 +2,7 @@
 
 #include "EntityFunctionLibrary.h"
 
+#include "GameFramework/Actor.h"
 #include "GameFramework/Actor/FlecsEntityActorComponent.h"
 #include "Interfaces/FlecsEntityInterface.h"
 

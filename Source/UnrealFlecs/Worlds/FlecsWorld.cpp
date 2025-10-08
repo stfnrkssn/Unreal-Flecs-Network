@@ -19,6 +19,7 @@
 #include "Components/ObjectTypes/FFlecsSceneComponentTag.h"
 #include "Components/ObjectTypes/FlecsActorTag.h"
 #include "Components/FlecsModuleComponent.h"
+#include "Engine/Engine.h"
 
 #include "Modules/FlecsDependenciesComponent.h"
 #include "Modules/FlecsModuleInitEvent.h"
@@ -26,8 +27,11 @@
 
 #include "General/FlecsGameplayTagManagerEntity.h"
 #include "General/FlecsObjectRegistrationInterface.h"
+#include "Logging/StructuredLog.h"
+#include "Math/TransformCalculus2D.h"
 
 #include "Pipelines/FlecsGameLoopInterface.h"
+#include "UObject/UObjectIterator.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlecsWorld)
 
@@ -98,7 +102,7 @@ void UFlecsWorld::WorldStart()
 	UE_LOGFMT(LogFlecsWorld, Log, "Flecs World started: {WorldObjectName}", *GetName());
 
 	bIsInitialized = true;
-		
+/*		
 #if WITH_AUTOMATION_TESTS
 	if (!GIsAutomationTesting)
 	{
@@ -107,7 +111,7 @@ void UFlecsWorld::WorldStart()
 #if WITH_AUTOMATION_TESTS
 	}
 #endif // WITH_AUTOMATION_TESTS
-
+*/
 	InitializeFlecsRegistrationObjects();
 }
 

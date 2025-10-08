@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Standard/Hashing.h"
+#include "Templates/SubclassOf.h"
 #include "FlecsScriptClassComponent.generated.h"
 
 USTRUCT(BlueprintType)

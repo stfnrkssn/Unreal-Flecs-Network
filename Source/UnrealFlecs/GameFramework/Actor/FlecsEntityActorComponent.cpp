@@ -12,6 +12,7 @@
 
 #include "Components/FlecsUObjectComponent.h"
 #include "Components/ObjectTypes/FlecsActorTag.h"
+#include "Engine/World.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlecsEntityActorComponent)
 

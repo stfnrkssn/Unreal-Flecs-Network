@@ -35,7 +35,7 @@ public:
 	
 	NO_DISCARD FORCEINLINE bool IsValid() const
 	{
-		return ::IsValid(World);
+		return World != nullptr;
 	}
 
 	FORCEINLINE FUWorldPtrComponent& operator=(UWorld* InWorld)

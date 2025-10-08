@@ -11,6 +11,7 @@
 
 #include "Collections/FlecsComponentCollectionObject.h"
 #include "Components/FlecsNetworkSerializeDefinitionComponent.h"
+#include "Logging/StructuredLog.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlecsEntityHandle)
 

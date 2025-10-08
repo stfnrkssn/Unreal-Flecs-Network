@@ -4,6 +4,7 @@
 #include "FlecsDefaultEntityEngineSubsystem.h"
 
 #include "FlecsDefaultEntitiesDeveloperSettings.h"
+#include "Logging/StructuredLog.h"
 
 #include "Logs/FlecsCategories.h"
 

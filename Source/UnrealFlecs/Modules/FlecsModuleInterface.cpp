@@ -14,6 +14,8 @@
 #include "Components/FlecsUObjectComponent.h"
 
 #include "FlecsModuleInitEvent.h"
+#include "Engine/World.h"
+#include "Logging/StructuredLog.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlecsModuleInterface)
 

@@ -7,6 +7,8 @@
 #include "CoreMinimal.h"
 #include "Experimental/Async/ConditionVariable.h"
 #include "flecs/os_api.h"
+#include "HAL/Runnable.h"
+#include "Logging/StructuredLog.h"
 #include "Logs/FlecsCategories.h"
 #include "SolidMacros/Macros.h"
 
