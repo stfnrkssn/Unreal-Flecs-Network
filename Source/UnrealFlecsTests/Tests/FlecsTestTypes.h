@@ -1,4 +1,4 @@
-﻿// Elie Wiese-Namir © 2025. All Rights Reserved.
+// Elie Wiese-Namir � 2025. All Rights Reserved.
 
 #pragma once
 
@@ -74,7 +74,7 @@ struct FFlecsTestComponent_Inherited : public FFlecsTestStruct_Value
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Value2;
+	int32 Value2 = 0;
 }; // struct FFlecsTestComponent_Inherited
 
 USTRUCT()
@@ -183,7 +183,7 @@ struct FFlecsTestComponent_Vector
 	GENERATED_BODY()
 
 	UPROPERTY()
-	FVector Value;
+	FVector Value = FVector::ZeroVector;
 	
 }; // struct FFlecsTestComponent_Position
 
@@ -193,10 +193,10 @@ struct alignas(16) FUStructTestComponent_CustomAlignedUSTRUCT_SixteenBytes
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Value1;
+	int32 Value1 = 0;
 
 	UPROPERTY()
-	int32 Value2;
+	int32 Value2 = 0;
 
 }; // struct FUStructTestComponent_CustomAlignedUSTRUCT_SixteenBytes
 
@@ -206,16 +206,16 @@ struct alignas(32) FUStructTestComponent_CustomAlignedUSTRUCT_ThirtyTwoBytes
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Value1;
+	int32 Value1 = 0;
 
 	UPROPERTY()
-	int32 Value2;
+	int32 Value2 = 0;
 
 	UPROPERTY()
-	int32 Value3;
+	int32 Value3 = 0;
 
 	UPROPERTY()
-	int32 Value4;
+	int32 Value4 = 0;
 
 }; // struct FUStructTestComponent_CustomAlignedUSTRUCT_ThirtyTwoBytes
 
@@ -225,13 +225,13 @@ struct alignas(64) FUStructTestComponent_CustomAlignedUSTRUCT_SixtyFourBytes
 	GENERATED_BODY()
 
 	UPROPERTY()
-	int32 Value1;
+	int32 Value1 = 0;
 
 	UPROPERTY()
-	int32 Value2;
+	int32 Value2 = 0;
 
 	UPROPERTY()
-	int32 Value3;
+	int32 Value3 = 0;
 
 }; // struct FUStructTestComponent_CustomAlignedUSTRUCT_SixtyFourBytes
 
@@ -275,6 +275,8 @@ class UNREALFLECSTESTS_API UFlecsUObjectComponentTestObject : public UObject
 {
 	GENERATED_BODY()
 }; // class UFlecsUObjectComponentTestObject
+
+
 
 
 
