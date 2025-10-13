@@ -25,9 +25,9 @@ UFlecsEntityActorComponent::UFlecsEntityActorComponent(const FObjectInitializer&
 
 void UFlecsEntityActorComponent::BeginPlay()
 {
-	Super::BeginPlay();
-
 	InitializeEntity();
+	
+	Super::BeginPlay();
 }
 
 void UFlecsEntityActorComponent::OnRegister()
@@ -55,12 +55,14 @@ void UFlecsEntityActorComponent::InitializeEntity()
 	if LIKELY_IF(ensureMsgf(UFlecsWorldSubsystem::HasValidFlecsWorldStatic(this),
 		TEXT("Flecs World Subsystem is not initialized.")))
 	{
+		
 		CreateActorEntity(UFlecsWorldSubsystem::GetDefaultWorldStatic(this));
 	}
 }
 
 void UFlecsEntityActorComponent::OnEntitySpawned(const FFlecsEntityHandle& InEntityHandle)
 {
+	OnEntitySpawnedCallback.Broadcast(this, InEntityHandle);
 	BP_OnEntitySpawned(InEntityHandle);
 }
 

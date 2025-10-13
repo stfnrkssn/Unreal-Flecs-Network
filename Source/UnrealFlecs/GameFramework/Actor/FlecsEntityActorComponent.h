@@ -9,6 +9,8 @@
 #include "Interfaces/FlecsEntityInterface.h"
 #include "FlecsEntityActorComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnEntityCreatedSignature, class UFlecsEntityActorComponent*, Component, const FFlecsEntityHandle&, Handle);
+
 UCLASS(BlueprintType, Blueprintable, ClassGroup=(Flecs),
 	meta=(BlueprintSpawnableComponent, DisplayName = "Flecs Entity Actor Component"))
 class UNREALFLECS_API UFlecsEntityActorComponent : public UActorComponent, public IFlecsEntityInterface
@@ -22,11 +24,14 @@ public:
 
 	virtual void OnRegister() override;
 	virtual void OnUnregister() override;
-
+	
 	virtual void InitializeEntity();
-
+	
 	virtual void OnEntitySpawned(const FFlecsEntityHandle& InEntityHandle);
-
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnEntityCreatedSignature OnEntitySpawnedCallback;
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Flecs | Entity", meta = (DisplayName = "On Entity Spawned"))
 	void BP_OnEntitySpawned(const FFlecsEntityHandle& InEntityHandle);
 
