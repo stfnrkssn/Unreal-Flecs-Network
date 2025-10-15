@@ -54,6 +54,15 @@ void UFlecsWorldSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		= CastChecked<AFlecsWorldSettings>(GetWorld()->GetWorldSettings());
 
 	const UFlecsWorldSettingsAsset* SettingsAsset = SettingsActor->DefaultWorld;
+	UE_LOG(LogFlecsCore, Warning, TEXT("[FlecsWorldSubsystem] bUseFlecsWorld=%s"), SettingsActor->bUseFlecsWorld ? TEXT("true") : TEXT("false"));
+	if (!SettingsAsset)
+	{
+		UE_LOG(LogFlecsCore, Warning, TEXT("[FlecsWorldSubsystem] %s missing DefaultWorld asset"), *SettingsActor->GetName());
+	}
+	else
+	{
+		UE_LOG(LogFlecsCore, Warning, TEXT("[FlecsWorldSubsystem] Using DefaultWorld asset %s"), *SettingsAsset->GetName());
+	}
 	
 	if LIKELY_IF(SettingsActor->bUseFlecsWorld && SettingsAsset)
 	{
@@ -202,6 +211,7 @@ UFlecsWorld* UFlecsWorldSubsystem::CreateWorld(const FString& Name, const FFlecs
 	{
 		solid_check(Module->GetClass()->ImplementsInterface(UFlecsModuleInterface::StaticClass()));
 			
+		UE_LOG(LogFlecsCore, Warning, TEXT("[FlecsWorldSubsystem] Importing module %s"), *Module->GetClass()->GetName());
 		DefaultWorld->ImportModule(Module);
 	}
 
