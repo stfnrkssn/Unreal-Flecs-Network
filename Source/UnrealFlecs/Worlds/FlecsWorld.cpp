@@ -384,21 +384,31 @@ void UFlecsWorld::InitializeSystems()
 			.cached()
 			.build();
 
-		FCoreUObjectDelegates::GarbageCollectComplete.AddWeakLambda(this, [this]
-		{
-			ObjectComponentQuery.each([](flecs::entity InEntity, const FFlecsUObjectComponent& InUObjectComponent)
-			{
-				const FFlecsEntityHandle EntityHandle = InEntity;
-					
-				if (!InUObjectComponent.IsValid())
-				{
-					UE_CLOGFMT(EntityHandle.HasName(), LogFlecsWorld, Verbose,
-						"Entity Garbage Collected: {EntityName}", EntityHandle.GetName());
-					
-					EntityHandle.Destroy();
-				}
-			});
-		});
+    FCoreUObjectDelegates::GarbageCollectComplete.AddWeakLambda(this, [this]
+    {
+        // Collect invalid entities first, then delete in a single deferred batch after iteration
+        TArray<ecs_entity_t> ToDelete;
+        ToDelete.Reserve(64);
+        ObjectComponentQuery.each([&ToDelete](flecs::entity InEntity, const FFlecsUObjectComponent& InUObjectComponent)
+        {
+            if (!InUObjectComponent.IsValid())
+            {
+                ToDelete.Add(static_cast<ecs_entity_t>(InEntity));
+            }
+        });
+
+        if (ToDelete.Num() > 0)
+        {
+            auto* WorldPtr = World.c_ptr();
+            World.defer([WorldPtr, ToDelete]()
+            {
+                for (ecs_entity_t Id : ToDelete)
+                {
+                    ecs_delete(WorldPtr, Id);
+                }
+            });
+        }
+    });
 		
 		ModuleComponentQuery = World.query_builder<FFlecsModuleComponent>("ModuleComponentQuery")
 			.cached()
